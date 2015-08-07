@@ -21,7 +21,7 @@ from TreeMaker.TreeMaker.makeTreeFromMiniAOD_cff import makeTreeFromMiniAOD
 makeTreeFromMiniAOD(process,
                     outfile="ReducedSelection",
                     reportfreq=50,
-                    dataset="file:/uscms_data/d3/bmahakud/DYJetsToLL_M-50_HT-600toInf_Tune4C_13TeV-madgraph-tauola_MINIAODSIM_PU20bx25_PHYS14_25_V1-v1.root",
+                    dataset="file:/afs/cern.ch/user/b/bmahakud/DYJetsToLL_M-50_HT-600toInf_Tune4C_13TeV-madgraph-tauola_MINIAODSIM_PU20bx25_PHYS14_25_V1-v1.root",
                     globaltag="PHYS14_25_V2::All",
                     lostlepton=False,
                     numevents=500,
