@@ -20,7 +20,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 from TreeMaker.TreeMaker.makeTreeFromMiniAOD_cff import makeTreeFromMiniAOD
 makeTreeFromMiniAOD(process,
                     outfile="ReducedSelection",
-                    reportfreq=50,
+                    reportfreq=1,
                     dataset="file:/afs/cern.ch/user/b/bmahakud/public/DYJetsToLL_M-50_HT-600toInf_Tune4C_13TeV-madgraph-tauola_MINIAODSIM_PU20bx25_PHYS14_25_V1-v1.root",
                     globaltag="PHYS14_25_V2::All",
                     lostlepton=False,
@@ -98,7 +98,11 @@ process.TreeMaker2.VarsInt.extend(['EcalDeadCellTriggerPrimitiveFilter'])
 
 ###  - - - - - - - - Event Filter stuff - - - - - - - 
 
-process.TriggerProducer.triggerNameList = cms.vstring( 'HLT_Ele15_IsoVVVL_PFHT350_PFMET70_v' )
+
+process.TriggerProducer.triggerNameList = cms.vstring( )
+process.TriggerProducer.triggerNameList = cms.vstring( 'HLT_Mu40_eta2p1_PFJet200_PFJet50_v' )
+process.TriggerProducer.triggerNameList = cms.vstring( 'HLT_Ele45_CaloIdVT_GsfTrkIdT_PFJet200_PFJet50_v' )
+
 
 process.TreeMaker2.VectorBool.extend(['TriggerProducer:TriggerPass'])
 process.TreeMaker2.VectorInt.extend(['TriggerProducer:TriggerPrescales'])
