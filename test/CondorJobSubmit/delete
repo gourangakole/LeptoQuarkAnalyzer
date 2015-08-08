@@ -1,0 +1,5 @@
+rm *.stdout
+rm *.log
+rm *.stderr
+rm condor_submit_Spring15signal.*
+rm run_Spring15signal.*
