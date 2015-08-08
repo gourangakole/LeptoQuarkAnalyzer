@@ -21,7 +21,8 @@ from TreeMaker.TreeMaker.makeTreeFromMiniAOD_cff import makeTreeFromMiniAOD
 makeTreeFromMiniAOD(process,
                     outfile="ReducedSelection",
                     reportfreq=1,
-                    dataset="file:/afs/cern.ch/user/b/bmahakud/public/DYJetsToLL_M-50_HT-600toInf_Tune4C_13TeV-madgraph-tauola_MINIAODSIM_PU20bx25_PHYS14_25_V1-v1.root",
+                    #dataset="file:/afs/cern.ch/user/b/bmahakud/public/DYJetsToLL_M-50_HT-600toInf_Tune4C_13TeV-madgraph-tauola_MINIAODSIM_PU20bx25_PHYS14_25_V1-v1.root",
+                    dataset="/store/mc/RunIISpring15DR74/LQToUE_M-600_BetaOne_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/Asympt25ns_MCRUN2_74_V9-v1/30000/2EF235EC-6D31-E511-BD81-000F53273650.root",
                     globaltag="PHYS14_25_V2::All",
                     lostlepton=False,
                     numevents=500,
@@ -109,6 +110,41 @@ process.TreeMaker2.VectorInt.extend(['TriggerProducer:TriggerPrescales'])
 process.TreeMaker2.VectorString.extend(['TriggerProducer:TriggerNames'])
 
 ###  - - - - - - - - Path stuff - - - - - - - 
+## CONFIGURE TFILESERVICE
+
+process.TFileService = cms.Service("TFileService",
+                                   fileName = cms.string(options.outputFile+"_RA2AnalysisTree.root"),
+                                   closeFileFast = cms.untracked.bool(True)
+                                   )
+
+##  LOAD DATAFILES
+if options.inputFilesConfig!="" :
+    process.load("BMahakud.LeptoQuarkAnalyzer."+options.inputFilesConfig+"_cff")
+
+if options.files!=[] :
+    readFiles = cms.untracked.vstring()
+    readFiles.extend( options.files )
+    process.source = cms.Source("PoolSource",
+                                fileNames = readFiles )
+
+process.maxEvents = cms.untracked.PSet(
+    input = cms.untracked.int32(options.numEvents)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 process.Path = cms.Path( 
                         process.LeptonsNew *
